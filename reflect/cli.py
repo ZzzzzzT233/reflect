@@ -16,6 +16,7 @@ from pathlib import Path
 from .agent import Reflect, week_start
 from .db import Memory
 from .llm import LLMError, get_backend
+from .privacy import LoggedBackend, forget_day, read_log, wipe
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -153,8 +154,16 @@ def cmd_demo(args):
     print(f"Report written to {report}")
 
 
+PERSONAL_DB = ROOT / "reflect.sqlite"
+PERSONAL_LOG = ROOT / "api_log.jsonl"
+
+
+def personal_agent(backend: str) -> Reflect:
+    return Reflect(Memory(PERSONAL_DB), LoggedBackend(get_backend(backend), PERSONAL_LOG))
+
+
 def cmd_add(args):
-    agent = Reflect(Memory(ROOT / "reflect.sqlite"), get_backend(args.backend))
+    agent = personal_agent(args.backend)
     d = args.date or date.today().isoformat()
     x, q = agent.add_entry(d, args.text)
     print(json.dumps(x, indent=1))
@@ -163,10 +172,31 @@ def cmd_add(args):
 
 
 def cmd_review(args):
-    agent = Reflect(Memory(ROOT / "reflect.sqlite"), get_backend(args.backend))
+    agent = personal_agent(args.backend)
     ws = week_start(args.date or date.today().isoformat())
     stats, review = agent.weekly_review(ws)
     print(review_md(ws, stats, review))
+
+
+def cmd_delete(args):
+    res = forget_day(Memory(PERSONAL_DB), PERSONAL_LOG, args.date)
+    print(f"Deleted {args.date}: {res['entries']} entry, {res['reviews']} review, {res['log_lines']} API-log lines.")
+
+
+def cmd_wipe(args):
+    if not args.yes:
+        sys.exit("This deletes your whole journal and API log. Re-run with --yes to confirm.")
+    res = wipe(Memory(PERSONAL_DB), PERSONAL_LOG)
+    print(f"Deleted {res['entries']} entries, {res['reviews']} reviews, {res['log_lines']} API-log lines.")
+
+
+def cmd_log(args):
+    recs = read_log(PERSONAL_LOG)
+    print(f"{len(recs)} calls to the model API logged in {PERSONAL_LOG.name}")
+    for r in recs[-args.n:]:
+        print(f"{r['time']}  {r['task']:<22} {r['chars_sent']:>6} chars")
+        if args.show:
+            print("   " + r["sent"][:500].replace("\n", "\n   "))
 
 
 def main(argv=None):
@@ -180,6 +210,12 @@ def main(argv=None):
     p.add_argument("--backend", default="openai"); p.set_defaults(fn=cmd_add)
     p = sub.add_parser("review"); p.add_argument("--date")
     p.add_argument("--backend", default="openai"); p.set_defaults(fn=cmd_review)
+    p = sub.add_parser("delete", help="delete one day of your journal"); p.add_argument("--date", required=True)
+    p.set_defaults(fn=cmd_delete)
+    p = sub.add_parser("wipe", help="delete your whole journal and API log"); p.add_argument("--yes", action="store_true")
+    p.set_defaults(fn=cmd_wipe)
+    p = sub.add_parser("log", help="show what was sent to the model API"); p.add_argument("-n", type=int, default=20)
+    p.add_argument("--show", action="store_true", help="also print the text that was sent"); p.set_defaults(fn=cmd_log)
     args = ap.parse_args(argv)
     try:
         args.fn(args)

@@ -79,7 +79,7 @@ class MockBackend:
                         "bedtime": None, "activities": [], "people": [], "stressors": [],
                         "highlights": [], "suggestion_followup": {"mentioned": False, "followed": None, "evidence": ""}}
             return json.loads(json.dumps(g))
-        if task == "review":
+        if task.startswith("review"):
             data = json.loads(user.split("DATA:\n", 1)[1].split("\n\nYOUR PREVIOUS DRAFT", 1)[0])
             pats = data["computed_patterns"]
             enough = bool(pats) and data["data_quality"]["enough_for_patterns"]
@@ -96,7 +96,7 @@ class MockBackend:
                                "check": "bedtime before 01:00 on weeknights",
                                "rule": {"type": "bedtime_before", "time": "01:00", "weeknights_only": True}},
             }
-        if task == "question":
+        if task.startswith("question"):
             return {"question": "[mock] Did you manage this week's suggestion today?"}
         if task.startswith("emotion"):
             return {"emotions": ["neutral"]}

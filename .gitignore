@@ -4,3 +4,5 @@ out/
 eval/goemotions/
 __pycache__/
 .DS_Store
+api_log.jsonl
+*.jsonl

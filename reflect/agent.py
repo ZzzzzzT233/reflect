@@ -152,7 +152,7 @@ class Reflect:
             return None
         user = json.dumps({"today": data, "missing": missing,
                            "active_goal": sugg["text"] if sugg else None})
-        return self.llm.json(QUESTION_SYSTEM, user, task="question").get("question")
+        return self.llm.json(QUESTION_SYSTEM, user, task=f"question:{d}").get("question")
 
     # 2. weekly: compute stats in Python, let the LLM write the review
     def weekly_review(self, ws: str) -> tuple[dict, dict]:
@@ -175,7 +175,7 @@ class Reflect:
                                            "activities", "people", "stressors", "risk_flag")}
                      for d, x in week.items()},
         }
-        review = self.llm.json(REVIEW_SYSTEM, "DATA:\n" + json.dumps(stats), task="review")
+        review = self.llm.json(REVIEW_SYSTEM, "DATA:\n" + json.dumps(stats), task=f"review:{ws}")
         review = self._check_and_rewrite(review, stats)
         self.mem.save_review(ws, stats, review)
         s = review.get("suggestion") or {}
@@ -196,7 +196,7 @@ class Reflect:
             user = ("DATA:\n" + json.dumps(stats) + "\n\nYOUR PREVIOUS DRAFT:\n" + json.dumps(review) +
                     "\n\nThe draft broke these rules:\n- " + "\n- ".join(problems) +
                     "\nRewrite the whole JSON so every problem is fixed. Keep everything that was fine.")
-            review = self.llm.json(REVIEW_SYSTEM, user, task="review")
+            review = self.llm.json(REVIEW_SYSTEM, user, task=f"review:{stats['week_start']}")
             problems = find_problems(review, stats)
         removed = []
         if problems:
