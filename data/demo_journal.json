@@ -49,10 +49,7 @@
    "people": [
     "roommate"
    ],
-   "stressors": [
-    "tired",
-    "couldn't focus"
-   ],
+   "stressors": [],
    "highlights": [],
    "suggestion_followup": {
     "mentioned": false,
@@ -353,8 +350,7 @@
     "project group"
    ],
    "stressors": [
-    "group project",
-    "tired"
+    "group project"
    ],
    "highlights": [],
    "suggestion_followup": {
@@ -555,9 +551,7 @@
     "screen_time"
    ],
    "people": [],
-   "stressors": [
-    "tired"
-   ],
+   "stressors": [],
    "highlights": [],
    "suggestion_followup": {
     "mentioned": false,

@@ -28,7 +28,9 @@ Return exactly these keys:
 - bedtime: time they went to bed LAST NIGHT as "HH:MM" 24h (e.g. "01:30"), else null
 - activities: only from {ACTIVITIES}
 - people: short names/roles of people they spent time with or talked to (e.g. "Mia", "mom"), [] if none
-- stressors: 0-3 short phrases
+- stressors: 0-3 short phrases naming EXTERNAL causes of stress (e.g. "problem set", "midterm",
+  "group project", "argument with roommate"). Never feelings or mood words ("tired", "felt awful",
+  "everything felt heavy" are NOT stressors; they belong in mood_score/emotions). [] if none
 - highlights: 0-2 short phrases
 - suggestion_followup: {{"mentioned": bool, "followed": true/false/null, "evidence": short quote or ""}}
   about the ACTIVE SUGGESTION given below (mentioned=false if the entry says nothing about it)
@@ -115,7 +117,7 @@ class Reflect:
         x["emotions"] = [e for e in x.get("emotions", []) if e in EMOTIONS][:3] or ["neutral"]
         x["activities"] = [a for a in x.get("activities", []) if a in ACTIVITIES]
         x.setdefault("people", [])
-        x.setdefault("stressors", [])
+        x["stressors"] = [s.strip().lower() for s in x.get("stressors", []) if isinstance(s, str) and s.strip()][:3]
         x.setdefault("highlights", [])
         x.setdefault("suggestion_followup", {"mentioned": False, "followed": None, "evidence": ""})
         x["risk_flag"] = bool(x.get("risk_flag", False))
