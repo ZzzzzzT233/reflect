@@ -1,0 +1,556 @@
+{
+ "kind": "no_pattern",
+ "seed": 3,
+ "expected": {
+  "must_find": [],
+  "allowed_dates": {},
+  "final_evidence": "not_enough",
+  "no_relationship_patterns": true
+ },
+ "entries": [
+  {
+   "date": "2026-11-02",
+   "text": "Slept 7.5 hours, in bed at 12:30am. Spent the afternoon studying in the library. Took it easy in the evening. Pretty good day overall.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 7.5,
+    "bedtime": "00:30",
+    "activities": [
+     "studying",
+     "rest"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-03",
+   "text": "In bed by 2:30am, maybe 5.5 hours of sleep. Did laundry and groceries. Walked along the river for a while. Had dinner with Jake. Kind of a down day, everything felt heavy.",
+   "gold": {
+    "mood_score": -1,
+    "emotions": [
+     "sadness"
+    ],
+    "sleep_hours": 5.5,
+    "bedtime": "02:30",
+    "activities": [
+     "chores",
+     "outdoors"
+    ],
+    "people": [
+     "Jake"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-04",
+   "text": "Went to bed around 10:45pm, got about 9 hours of sleep. Went for a run before class. Two lectures and a section today. Cleaned my room. Great day, I felt really happy.",
+   "gold": {
+    "mood_score": 2,
+    "emotions": [
+     "joy",
+     "gratitude"
+    ],
+    "sleep_hours": 9.0,
+    "bedtime": "22:45",
+    "activities": [
+     "exercise",
+     "class",
+     "chores"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-05",
+   "text": "In bed by 12am, maybe 8 hours of sleep. Walked along the river for a while. An okay, ordinary day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "00:00",
+    "activities": [
+     "outdoors"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-06",
+   "text": "In bed by 1:30am, maybe 6 hours of sleep. Watched a couple of episodes of a show. Mostly rested. Honestly a terrible day, I felt awful.",
+   "gold": {
+    "mood_score": -2,
+    "emotions": [
+     "sadness",
+     "disappointment"
+    ],
+    "sleep_hours": 6.0,
+    "bedtime": "01:30",
+    "activities": [
+     "screen_time",
+     "rest"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-07",
+   "text": "In bed by 12am, maybe 7 hours of sleep. Spent the afternoon studying in the library. Took it easy in the evening. Spent too long scrolling on my phone. Called mom for a while. Honestly a terrible day, I felt awful.",
+   "gold": {
+    "mood_score": -2,
+    "emotions": [
+     "sadness",
+     "disappointment"
+    ],
+    "sleep_hours": 7.0,
+    "bedtime": "00:00",
+    "activities": [
+     "studying",
+     "rest",
+     "screen_time"
+    ],
+    "people": [
+     "mom"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-08",
+   "text": "Slept 4.5 hours, in bed at 3am. Did a short workout. Watched a couple of episodes of a show. Worked through my notes for a few hours. Kind of a down day, everything felt heavy.",
+   "gold": {
+    "mood_score": -1,
+    "emotions": [
+     "sadness"
+    ],
+    "sleep_hours": 4.5,
+    "bedtime": "03:00",
+    "activities": [
+     "exercise",
+     "screen_time",
+     "studying"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-09",
+   "text": "Slept 7.5 hours, in bed at 12am. Did laundry and groceries. Felt low and drained most of the day.",
+   "gold": {
+    "mood_score": -1,
+    "emotions": [
+     "sadness"
+    ],
+    "sleep_hours": 7.5,
+    "bedtime": "00:00",
+    "activities": [
+     "chores"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-10",
+   "text": "Went to bed around 11:15pm, got about 8 hours of sleep. Spent the afternoon studying in the library. An okay, ordinary day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "23:15",
+    "activities": [
+     "studying"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-11",
+   "text": "Went to bed around 11:30pm, got about 8 hours of sleep. Did laundry and groceries. Did some reading for class. Called my sister for a while. Pretty good day overall.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "23:30",
+    "activities": [
+     "chores",
+     "studying"
+    ],
+    "people": [
+     "my sister"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-12",
+   "text": "Went to bed around 10:45pm, got about 8 hours of sleep. Cleaned my room. Had classes most of the day. Spent too long scrolling on my phone. Called mom for a while. Felt low and drained most of the day.",
+   "gold": {
+    "mood_score": -1,
+    "emotions": [
+     "sadness"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "22:45",
+    "activities": [
+     "chores",
+     "class",
+     "screen_time"
+    ],
+    "people": [
+     "mom"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-13",
+   "text": "Slept 7 hours, in bed at 12:15am. Spent too long scrolling on my phone. Went for a run before class. Nothing special, just a normal day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 7.0,
+    "bedtime": "00:15",
+    "activities": [
+     "screen_time",
+     "exercise"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-14",
+   "text": "In bed by 11pm, maybe 8 hours of sleep. Did a short workout. Called mom for a while. Felt low and drained most of the day.",
+   "gold": {
+    "mood_score": -1,
+    "emotions": [
+     "sadness"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "23:00",
+    "activities": [
+     "exercise"
+    ],
+    "people": [
+     "mom"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-15",
+   "text": "Went to bed around 2:30am, got about 4.5 hours of sleep. Had classes most of the day. Spent the afternoon studying in the library. Had dinner with Leo. Pretty good day overall.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 4.5,
+    "bedtime": "02:30",
+    "activities": [
+     "class",
+     "studying"
+    ],
+    "people": [
+     "Leo"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-16",
+   "text": "In bed by 10:45pm, maybe 9 hours of sleep. Did some reading for class. Took a long walk outside. Spent too long scrolling on my phone. Had dinner with Leo. An okay, ordinary day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 9.0,
+    "bedtime": "22:45",
+    "activities": [
+     "studying",
+     "outdoors",
+     "screen_time"
+    ],
+    "people": [
+     "Leo"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-17",
+   "text": "Slept 8 hours, in bed at 11:45pm. Went for a run before class. Spent the afternoon studying in the library. Honestly a terrible day, I felt awful.",
+   "gold": {
+    "mood_score": -2,
+    "emotions": [
+     "sadness",
+     "disappointment"
+    ],
+    "sleep_hours": 8.0,
+    "bedtime": "23:45",
+    "activities": [
+     "exercise",
+     "studying"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "text": "In bed by 1:45am, maybe 5 hours of sleep. Walked along the river for a while. Had dinner with Jake. Nothing special, just a normal day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 5.0,
+    "bedtime": "01:45",
+    "activities": [
+     "outdoors"
+    ],
+    "people": [
+     "Jake"
+    ],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-19",
+   "text": "Went to bed around 12am, got about 7.5 hours of sleep. Watched a couple of episodes of a show. Pretty good day overall.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 7.5,
+    "bedtime": "00:00",
+    "activities": [
+     "screen_time"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-20",
+   "text": "Went to bed around 11:45pm, got about 7 hours of sleep. Spent too long scrolling on my phone. Pretty good day overall.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 7.0,
+    "bedtime": "23:45",
+    "activities": [
+     "screen_time"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-21",
+   "text": "In bed by 1:30am, maybe 6 hours of sleep. Two lectures and a section today. Watched a couple of episodes of a show. Did a short workout. Felt good today.",
+   "gold": {
+    "mood_score": 1,
+    "emotions": [
+     "joy"
+    ],
+    "sleep_hours": 6.0,
+    "bedtime": "01:30",
+    "activities": [
+     "class",
+     "screen_time",
+     "exercise"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  },
+  {
+   "date": "2026-11-22",
+   "text": "In bed by 11:30pm, maybe 7.5 hours of sleep. Walked along the river for a while. Went to the gym in the morning. Nothing special, just a normal day.",
+   "gold": {
+    "mood_score": 0,
+    "emotions": [
+     "neutral"
+    ],
+    "sleep_hours": 7.5,
+    "bedtime": "23:30",
+    "activities": [
+     "outdoors",
+     "exercise"
+    ],
+    "people": [],
+    "stressors": [],
+    "highlights": [],
+    "suggestion_followup": {
+     "mentioned": false,
+     "followed": null,
+     "evidence": ""
+    },
+    "risk_flag": false
+   }
+  }
+ ]
+}
