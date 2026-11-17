@@ -1,0 +1,14 @@
+{
+ "backend": "openai",
+ "model": "gpt-4o-mini",
+ "n": 200,
+ "seed": 0,
+ "any_label_match": 0.385,
+ "top1_in_gold": 0.35,
+ "sentiment_group_acc": 0.56,
+ "micro_precision": 0.285,
+ "micro_recall": 0.343,
+ "micro_f1": 0.312,
+ "llm_calls": 10,
+ "tokens": 9869
+}
