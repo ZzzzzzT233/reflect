@@ -1,0 +1,630 @@
+[
+ {
+  "date": "2026-10-05",
+  "text": "Slept about 7 hours, in bed at 23:45. Classes all morning, then started the 1.125 problem set in the afternoon. Grabbed dinner with Mia, which was nice. The PS is way bigger than I thought and it's due Tuesday morning, so I'm going to push through tonight.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "nervousness"
+   ],
+   "sleep_hours": 7,
+   "bedtime": "23:45",
+   "activities": [
+    "class",
+    "studying",
+    "deadline_work",
+    "social"
+   ],
+   "people": [
+    "Mia"
+   ],
+   "stressors": [
+    "problem set"
+   ],
+   "highlights": [
+    "dinner with Mia"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "text": "Went to bed at 2:30 after finishing the PS, maybe 5 hours of sleep. Dragged myself through class and couldn't focus at all. Snapped at my roommate over the dishes. Felt kind of useless all day.",
+  "gold": {
+   "mood_score": -1,
+   "emotions": [
+    "sadness",
+    "annoyance"
+   ],
+   "sleep_hours": 5,
+   "bedtime": "02:30",
+   "activities": [
+    "class"
+   ],
+   "people": [
+    "roommate"
+   ],
+   "stressors": [
+    "tired",
+    "couldn't focus"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-07",
+  "text": "Slept 8 hours, in bed by 23:30. Went to the gym this morning for the first time in two weeks and felt so much better. Office hours were really useful. Another problem set due tomorrow morning though, so it'll be a long night.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "joy",
+    "relief"
+   ],
+   "sleep_hours": 8,
+   "bedtime": "23:30",
+   "activities": [
+    "exercise",
+    "studying",
+    "deadline_work"
+   ],
+   "people": [
+    "TA"
+   ],
+   "stressors": [
+    "problem set"
+   ],
+   "highlights": [
+    "gym",
+    "office hours"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-08",
+  "text": "Bed at 3am, about 4.5 hours of sleep. Submitted the stats PS at 8:58. Skipped lunch, felt anxious and flat the whole day. Didn't really talk to anyone.",
+  "gold": {
+   "mood_score": -1,
+   "emotions": [
+    "nervousness",
+    "sadness"
+   ],
+   "sleep_hours": 4.5,
+   "bedtime": "03:00",
+   "activities": [
+    "class",
+    "studying"
+   ],
+   "people": [],
+   "stressors": [
+    "stats problem set"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-09",
+  "text": "Slept in, 9 hours (bed around 00:30). Called mom in the afternoon and we talked for an hour. Lazy evening watching shows.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "joy",
+    "caring"
+   ],
+   "sleep_hours": 9,
+   "bedtime": "00:30",
+   "activities": [
+    "family_call",
+    "rest",
+    "screen_time"
+   ],
+   "people": [
+    "mom"
+   ],
+   "stressors": [],
+   "highlights": [
+    "call with mom"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-10",
+  "text": "7.5 hours, bed at 1:15. Long walk along the Charles with Mia and Jake, then we cooked dinner together. Best day this week.",
+  "gold": {
+   "mood_score": 2,
+   "emotions": [
+    "joy",
+    "gratitude"
+   ],
+   "sleep_hours": 7.5,
+   "bedtime": "01:15",
+   "activities": [
+    "outdoors",
+    "social"
+   ],
+   "people": [
+    "Mia",
+    "Jake"
+   ],
+   "stressors": [],
+   "highlights": [
+    "walk along the Charles",
+    "cooking with friends"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-11",
+  "text": "Bed at midnight, 8 hours. Spent most of the day reading for next week, a bit bored. Groceries and laundry.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "neutral"
+   ],
+   "sleep_hours": 8,
+   "bedtime": "00:00",
+   "activities": [
+    "studying",
+    "chores"
+   ],
+   "people": [],
+   "stressors": [],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-12",
+  "text": "8 hours, bed 23:40. Started the new PS early this time. Did half of it tonight and stopped at 12:15 like I planned. Feels weird to stop but good.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "optimism",
+    "pride"
+   ],
+   "sleep_hours": 8,
+   "bedtime": "23:40",
+   "activities": [
+    "class",
+    "studying"
+   ],
+   "people": [],
+   "stressors": [],
+   "highlights": [
+    "started PS early"
+   ],
+   "suggestion_followup": {
+    "mentioned": true,
+    "followed": true,
+    "evidence": "stopped at 12:15 like I planned"
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-13",
+  "text": "7 hours, bed 00:50. Gym at 7am, then class. Lunch with Jake. Pretty solid day.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "joy"
+   ],
+   "sleep_hours": 7,
+   "bedtime": "00:50",
+   "activities": [
+    "exercise",
+    "class",
+    "social"
+   ],
+   "people": [
+    "Jake"
+   ],
+   "stressors": [],
+   "highlights": [
+    "gym",
+    "lunch with Jake"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-14",
+  "text": "Bed 00:20, 7.5 hours. Finished the PS a day early and actually went to bed at a normal time. Group project meeting was frustrating, nobody had read the brief.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "annoyance",
+    "relief"
+   ],
+   "sleep_hours": 7.5,
+   "bedtime": "00:20",
+   "activities": [
+    "class",
+    "studying"
+   ],
+   "people": [
+    "project group"
+   ],
+   "stressors": [
+    "group project"
+   ],
+   "highlights": [
+    "finished PS early"
+   ],
+   "suggestion_followup": {
+    "mentioned": true,
+    "followed": true,
+    "evidence": "went to bed at a normal time"
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-15",
+  "text": "7 hours, bed 00:45. Quiet day, class and library. Talked to mom briefly. Then found out the group slides are due tomorrow at 9 and nobody has started. Ugh.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "annoyance"
+   ],
+   "sleep_hours": 7,
+   "bedtime": "00:45",
+   "activities": [
+    "class",
+    "studying",
+    "family_call",
+    "deadline_work"
+   ],
+   "people": [
+    "mom",
+    "project group"
+   ],
+   "stressors": [
+    "group project"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-16",
+  "text": "Bed at 2, maybe 5.5 hours. I broke the rule, the slides had to get done. Tired and irritated all day.",
+  "gold": {
+   "mood_score": -1,
+   "emotions": [
+    "annoyance",
+    "disappointment"
+   ],
+   "sleep_hours": 5.5,
+   "bedtime": "02:00",
+   "activities": [
+    "class"
+   ],
+   "people": [
+    "project group"
+   ],
+   "stressors": [
+    "group project",
+    "tired"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": true,
+    "followed": false,
+    "evidence": "I broke the rule"
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-17",
+  "text": "Slept 9.5 hours, bed 23:30. Climbing gym with Mia in the afternoon. Feeling human again.",
+  "gold": {
+   "mood_score": 2,
+   "emotions": [
+    "joy",
+    "relief"
+   ],
+   "sleep_hours": 9.5,
+   "bedtime": "23:30",
+   "activities": [
+    "exercise",
+    "social"
+   ],
+   "people": [
+    "Mia"
+   ],
+   "stressors": [],
+   "highlights": [
+    "climbing with Mia"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-18",
+  "text": "8 hours, bed 00:10. Planned the week. Midterms on Tuesday and Wednesday, a bit nervous. Video call with my sister.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "nervousness"
+   ],
+   "sleep_hours": 8,
+   "bedtime": "00:10",
+   "activities": [
+    "studying",
+    "family_call"
+   ],
+   "people": [
+    "sister"
+   ],
+   "stressors": [
+    "midterms"
+   ],
+   "highlights": [
+    "call with sister"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-19",
+  "text": "7.5 hours, bed 00:30. Studied all day for the econ midterm tomorrow. I'll try to stop by 12:30 but I don't feel ready.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "nervousness"
+   ],
+   "sleep_hours": 7.5,
+   "bedtime": "00:30",
+   "activities": [
+    "studying"
+   ],
+   "people": [],
+   "stressors": [
+    "midterm"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": true,
+    "followed": null,
+    "evidence": "I'll try to stop by 12:30"
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-20",
+  "text": "Ended up cramming until 3, about 4 hours of sleep. The midterm went badly, I blanked on two questions. Cried a bit after.",
+  "gold": {
+   "mood_score": -2,
+   "emotions": [
+    "sadness",
+    "disappointment"
+   ],
+   "sleep_hours": 4,
+   "bedtime": "03:00",
+   "activities": [
+    "class",
+    "studying"
+   ],
+   "people": [],
+   "stressors": [
+    "midterm"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": true,
+    "followed": false,
+    "evidence": "cramming until 3"
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-21",
+  "text": "Crashed early, bed at 23:00, 8.5 hours. Second midterm went much better than yesterday's. Celebrated with Jake and Mia with pizza.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "relief",
+    "joy"
+   ],
+   "sleep_hours": 8.5,
+   "bedtime": "23:00",
+   "activities": [
+    "class",
+    "social"
+   ],
+   "people": [
+    "Jake",
+    "Mia"
+   ],
+   "stressors": [],
+   "highlights": [
+    "second midterm went well",
+    "pizza with friends"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-22",
+  "text": "8 hours, bed 00:15. Gym in the morning. Feeling lighter now that midterms are done. Started reading for the term project.",
+  "gold": {
+   "mood_score": 1,
+   "emotions": [
+    "relief",
+    "optimism"
+   ],
+   "sleep_hours": 8,
+   "bedtime": "00:15",
+   "activities": [
+    "exercise",
+    "studying"
+   ],
+   "people": [],
+   "stressors": [],
+   "highlights": [
+    "gym"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "text": "Bed at 1:40, about 6 hours. Was on my phone scrolling until late, not even working. Groggy and a bit low.",
+  "gold": {
+   "mood_score": -1,
+   "emotions": [
+    "sadness"
+   ],
+   "sleep_hours": 6,
+   "bedtime": "01:40",
+   "activities": [
+    "class",
+    "screen_time"
+   ],
+   "people": [],
+   "stressors": [
+    "tired"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-24",
+  "text": "9 hours, bed 00:30. Long walk and brunch with Mia. Called mom in the evening.",
+  "gold": {
+   "mood_score": 2,
+   "emotions": [
+    "joy",
+    "gratitude"
+   ],
+   "sleep_hours": 9,
+   "bedtime": "00:30",
+   "activities": [
+    "outdoors",
+    "social",
+    "family_call"
+   ],
+   "people": [
+    "Mia",
+    "mom"
+   ],
+   "stressors": [],
+   "highlights": [
+    "brunch with Mia",
+    "call with mom"
+   ],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ },
+ {
+  "date": "2026-10-25",
+  "text": "7.5 hours, bed 00:45. Slow day. Laundry and some reading. A bit anxious about the term project proposal due Thursday.",
+  "gold": {
+   "mood_score": 0,
+   "emotions": [
+    "nervousness"
+   ],
+   "sleep_hours": 7.5,
+   "bedtime": "00:45",
+   "activities": [
+    "chores",
+    "studying"
+   ],
+   "people": [],
+   "stressors": [
+    "term project proposal"
+   ],
+   "highlights": [],
+   "suggestion_followup": {
+    "mentioned": false,
+    "followed": null,
+    "evidence": ""
+   },
+   "risk_flag": false
+  }
+ }
+]
