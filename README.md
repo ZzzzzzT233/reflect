@@ -36,6 +36,28 @@ streamlit run app.py                           # web app for your own journal
 
 The model defaults to `gpt-4o-mini`. To change it, set `REFLECT_MODEL=<model>` in `.env`. The full 3-week demo uses about 35 calls, and GoEmotions with n=200 uses 10 calls. Both together cost a few cents.
 
+## Using it as your journal
+
+- **Your journal:** double-click `start_reflect.command`, or run `streamlit run app.py`. A browser tab opens.
+  - Write each night on **Today**. If Reflect asks a follow-up question, answer it there.
+  - To fill in a day you missed, pick an earlier date.
+- **Demo mode:** double-click `start_demo.command`, or run `streamlit run app.py -- --demo`. It shows the synthetic test journal from a separate database, so a presentation never exposes real entries.
+
+## Privacy
+
+| What | Where |
+|---|---|
+| Entries, extracted data, reviews, goals | `reflect.sqlite` on your computer (demo mode: `out/demo_app.sqlite`) |
+| Log of every call to the model API, with the exact text sent | `api_log.jsonl` next to it (demo mode: `out/demo_api_log.jsonl`) |
+| Sent to the OpenAI API | `extract:<date>` sends that day's entry text, its date and the current goal's text. `question:<date>` and `review:<week>` send only extracted fields and statistics, **never the raw text**. |
+
+- None of these files are pushed to GitHub (`.gitignore`).
+- The **Privacy** tab in the app shows the API log, including exactly what was sent.
+- **Delete one day:** use the Privacy tab, or run `python3 -m reflect.cli delete --date YYYY-MM-DD`. This removes the entry, its extracted data, every saved review that used it, and its API-log lines.
+- **Delete everything:** use the Privacy tab (type DELETE), or run `python3 -m reflect.cli wipe --yes`.
+- **See what was sent:** run `python3 -m reflect.cli log --show`.
+- How OpenAI handles API data is governed by OpenAI's own API data policy. Check its current terms before writing anything you wouldn't want sent to a third party.
+
 ## Data
 
 | Data | What it's for |
