@@ -66,7 +66,15 @@ Rules:
   gently encourage reaching out to someone they trust or a professional.
 Return JSON: {"summary": "2-3 sentences", "evidence_level": "enough" | "not_enough",
 "patterns": [{"key": "<key from computed_patterns>", "finding": "...", "evidence_dates": ["YYYY-MM-DD"]}],
-"last_suggestion_check": "1-2 sentences", "suggestion": {"text": "...", "check": "how the journal will show it"}}"""
+"last_suggestion_check": "1-2 sentences",
+"suggestion": {"text": "...", "check": "how the journal will show it", "rule": <one rule below>}}
+The suggestion's "rule" must let the app check it from the journal data. Use exactly one of:
+  {"type": "bedtime_before", "time": "HH:MM", "weeknights_only": true|false}
+  {"type": "sleep_at_least", "hours": <number>}
+  {"type": "activity", "activity": <one of %s>, "min_days": <int>}
+  {"type": "log_field", "field": "bedtime" | "sleep_hours"}
+  {"type": "none"}   (only if nothing above fits)
+For last_suggestion_check, rely on DATA.last_suggestion_followup.rule_check when it is present.""" % ACTIVITIES
 
 
 # ---------------------------------------------------------------- helpers
@@ -105,9 +113,10 @@ def is_late_night(x: dict) -> bool:
 
 # ---------------------------------------------------------------- agent
 class Reflect:
-    def __init__(self, memory: Memory, llm):
+    def __init__(self, memory: Memory, llm, scripted_goal: dict | None = None):
         self.mem = memory
         self.llm = llm
+        self.scripted_goal = scripted_goal  # {"text", "check", "rule"}; only used by evaluations
 
     # 1. daily: extract + remember + follow-up question
     def add_entry(self, d: str, text: str) -> tuple[dict, str | None]:
@@ -168,8 +177,11 @@ class Reflect:
         review = self.llm.json(REVIEW_SYSTEM, "DATA:\n" + json.dumps(stats), task="review")
         self.mem.save_review(ws, stats, review)
         s = review.get("suggestion") or {}
-        if s.get("text"):
-            self.mem.set_suggestion(ws, s["text"], s.get("check", ""))
+        if self.scripted_goal:              # evaluation mode: keep a fixed goal so follow-up can be scored
+            g = self.scripted_goal
+            self.mem.set_suggestion(ws, g["text"], g["check"], validate_rule(g["rule"]))
+        elif s.get("text"):
+            self.mem.set_suggestion(ws, s["text"], s.get("check", ""), validate_rule(s.get("rule")))
         return stats, review
 
     @staticmethod
@@ -329,22 +341,65 @@ def recurring_stressors(h: dict[str, dict], min_n: int = MIN_GROUP) -> list[dict
             for s, ds in sorted(st.items(), key=lambda kv: -len(kv[1])) if len(ds) >= min_n]
 
 
+def validate_rule(rule) -> dict:
+    """Keep only rules the app can check from extracted data; anything else becomes {"type": "none"}."""
+    if not isinstance(rule, dict):
+        return {"type": "none"}
+    t = rule.get("type")
+    try:
+        if t == "bedtime_before" and bedtime_minutes(rule.get("time")) is not None:
+            return {"type": t, "time": rule["time"], "weeknights_only": bool(rule.get("weeknights_only", False))}
+        if t == "sleep_at_least" and 3 <= float(rule.get("hours")) <= 12:
+            return {"type": t, "hours": float(rule["hours"])}
+        if t == "activity" and rule.get("activity") in ACTIVITIES:
+            return {"type": t, "activity": rule["activity"], "min_days": max(1, min(7, int(rule.get("min_days", 1))))}
+        if t == "log_field" and rule.get("field") in ("bedtime", "sleep_hours"):
+            return {"type": t, "field": rule["field"]}
+    except (TypeError, ValueError):
+        pass
+    return {"type": "none"}
+
+
+def check_rule_day(rule: dict, d: str, x: dict) -> bool | None:
+    """Did this day's entry meet the rule? None = rule doesn't apply or the data is missing."""
+    t = rule.get("type")
+    if t == "bedtime_before":
+        # an entry reports LAST night's bedtime, so Mon-Fri entries are the Sun-Thu "weeknights"
+        if rule.get("weeknights_only") and date.fromisoformat(d).weekday() > 4:
+            return None
+        b = bedtime_minutes(x.get("bedtime"))
+        return None if b is None else b < bedtime_minutes(rule["time"])
+    if t == "sleep_at_least":
+        s = x.get("sleep_hours")
+        return None if s is None else s >= rule["hours"]
+    if t == "activity":
+        return rule["activity"] in x.get("activities", [])
+    if t == "log_field":
+        return x.get(rule["field"]) is not None
+    return None
+
+
 def followup_summary(sugg: dict | None, week: dict) -> dict | None:
+    """How last week's suggestion went. The rule check is computed from data; the self-report is what
+    the extractor read in the entries ("I stopped at 12:30 like I planned")."""
     if not sugg:
         return None
     f = [x["suggestion_followup"] for x in week.values()]
     yes = sum(1 for x in f if x.get("mentioned") and x.get("followed") is True)
     no = sum(1 for x in f if x.get("mentioned") and x.get("followed") is False)
-    weeknights = [d for d in week if date.fromisoformat(d).weekday() < 5]
-    early = sum(1 for d in weeknights
-                if (b := bedtime_minutes(week[d].get("bedtime"))) is not None and b < LATE)
-    known = sum(1 for d in weeknights if week[d].get("bedtime"))
-    return {
-        "suggestion": sugg["text"],
-        "check": sugg["check"],
-        "days_followed": yes,
-        "days_not_followed": no,
-        "days_not_mentioned": len(f) - yes - no,
-        "weeknight_bedtimes_before_01": f"{early}/{known}" if known else "unknown",
-        "summary": f"followed on {yes} day(s), missed on {no}, not mentioned on {len(f) - yes - no}",
-    }
+    rule = sugg.get("rule") or {"type": "none"}
+    res = {"suggestion": sugg["text"], "check": sugg["check"], "rule": rule,
+           "self_report": f"said they followed it on {yes} day(s), missed on {no}, "
+                          f"didn't mention it on {len(f) - yes - no}"}
+    if rule["type"] != "none":
+        vals = [check_rule_day(rule, d, x) for d, x in sorted(week.items())]
+        met, n = sum(v is True for v in vals), sum(v is not None for v in vals)
+        if rule["type"] == "activity":
+            ok = met >= rule["min_days"]
+            res["rule_check"] = (f"'{rule['activity']}' on {met} day(s) this week (goal {rule['min_days']}): "
+                                 f"{'met' if ok else 'not met'}")
+        else:
+            res["rule_check"] = f"met on {met} of {n} applicable day(s)" if n else "no data to check"
+        res["rule_met_days"], res["rule_applicable_days"] = met, n
+    res["summary"] = res.get("rule_check") or res["self_report"]
+    return res

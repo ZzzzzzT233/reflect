@@ -93,7 +93,8 @@ class MockBackend:
                              for p in pats[:3]] if enough else [],
                 "last_suggestion_check": "[mock] " + (data.get("last_suggestion_followup") or {}).get("summary", "no previous suggestion"),
                 "suggestion": {"text": "[mock] Stop deadline work by 00:30 on weeknights.",
-                               "check": "bedtime before 01:00 on weeknights"},
+                               "check": "bedtime before 01:00 on weeknights",
+                               "rule": {"type": "bedtime_before", "time": "01:00", "weeknights_only": True}},
             }
         if task == "question":
             return {"question": "[mock] Did you manage this week's suggestion today?"}

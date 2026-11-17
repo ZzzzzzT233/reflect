@@ -71,7 +71,9 @@ def review_md(ws: str, stats: dict, review: dict) -> str:
              f"*evidence: {review.get('evidence_level', '?')} · {q.get('total_entries', '?')} entries so far*", "",
              review.get("summary", ""), ""]
     if stats.get("last_suggestion_followup"):
-        lines += [f"**Last week’s suggestion:** {stats['last_suggestion_followup']['suggestion']}  ",
+        fu = stats["last_suggestion_followup"]
+        lines += [f"**Last week’s suggestion:** {fu['suggestion']}  ",
+                  f"**From the data:** {fu.get('rule_check', 'no checkable rule')} · {fu['self_report']}  ",
                   f"**Check-in:** {review.get('last_suggestion_check', '')}", ""]
     obs = stats.get("observations") or []
     if obs:
@@ -86,6 +88,13 @@ def review_md(ws: str, stats: dict, review: dict) -> str:
     return "\n".join(lines)
 
 
+# The demo journal's follow-up labels assume this goal is active from week 2 on, so by default the demo
+# keeps it fixed instead of using whatever the model suggests. --free-goal lets the model choose.
+SCRIPTED_GOAL = {"text": "No deadline work after 12:30am on weeknights.",
+                 "check": "bedtime before 01:00 on weeknights",
+                 "rule": {"type": "bedtime_before", "time": "01:00", "weeknights_only": True}}
+
+
 def cmd_demo(args):
     data = json.loads((ROOT / "data" / "demo_journal.json").read_text())
     gold = {e["date"]: e["gold"] for e in data}
@@ -94,7 +103,7 @@ def cmd_demo(args):
     out.mkdir(exist_ok=True)
     db_path = out / f"demo_{args.backend}.sqlite"
     db_path.unlink(missing_ok=True)
-    agent = Reflect(Memory(db_path), llm)
+    agent = Reflect(Memory(db_path), llm, scripted_goal=None if args.free_goal else SCRIPTED_GOAL)
 
     md = [f"# Reflect — 3-week demo run", "",
           f"Backend: **{llm.name}** · model: **{llm.model}** · journal: 21 synthetic entries "
@@ -156,6 +165,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="reflect")
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("demo"); p.add_argument("--backend", default="openai", choices=["openai", "mock"])
+    p.add_argument("--free-goal", action="store_true", help="let the model set each week's goal")
     p.set_defaults(fn=cmd_demo)
     p = sub.add_parser("add"); p.add_argument("text"); p.add_argument("--date")
     p.add_argument("--backend", default="openai"); p.set_defaults(fn=cmd_add)

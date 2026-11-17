@@ -62,6 +62,12 @@ Evidence rules in `reflect/agent.py`: at least 10 entries in total, at least 3 d
 
 Statistics layer over 50 random seeds each (gold labels): the clear pattern was found 50/50 times; no-pattern journals gave a spurious relationship in 4/50 (8%); missing-day journals gave none.
 
+### Goal follow-up
+
+Each weekly suggestion comes with a machine-checkable rule: `bedtime_before`, `sleep_at_least`, `activity` or `log_field`. Next week's review reports two things: whether the rule was met according to the data ("met on 4 of 5 weeknights"), and what the user said in their entries. To make follow-up detection scoreable, the demo keeps one scripted goal ("no deadline work after 12:30am on weeknights") from week 2 on, because the demo journal's hand labels assume that goal. Use `--free-goal` to let the model choose each week's goal instead.
+
+Recurring stressors ("'midterm' came up 4 times") are reported as **observations**. They aren't relationship patterns, so they never make the evidence level "enough".
+
 ### Other checks
 
 1. **Extraction accuracy:** compares the model's output with the hand labels on 21 entries (mood, sleep, bedtime, activities, people, goal follow-up). Printed at the end of `demo`.

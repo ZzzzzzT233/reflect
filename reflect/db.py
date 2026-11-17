@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS suggestions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     week_start TEXT NOT NULL,       -- week it was given in
     text TEXT NOT NULL,
-    check_rule TEXT,                -- how we will know it was followed
+    check_rule TEXT,                -- JSON: {"check": text, "rule": {...}} (see agent.validate_rule)
     active INTEGER NOT NULL DEFAULT 1
 );
 """
@@ -69,10 +69,17 @@ class Memory:
     def active_suggestion(self) -> dict | None:
         r = self.conn.execute(
             "SELECT id, week_start, text, check_rule FROM suggestions WHERE active=1 ORDER BY id DESC LIMIT 1").fetchone()
-        return dict(zip(["id", "week_start", "text", "check"], r)) if r else None
+        if not r:
+            return None
+        try:
+            c = json.loads(r[3] or "")
+        except json.JSONDecodeError:          # older rows stored plain text
+            c = {"check": r[3] or "", "rule": {"type": "none"}}
+        return {"id": r[0], "week_start": r[1], "text": r[2], "check": c.get("check", ""),
+                "rule": c.get("rule") or {"type": "none"}}
 
-    def set_suggestion(self, week_start: str, text: str, check: str):
+    def set_suggestion(self, week_start: str, text: str, check: str, rule: dict | None = None):
         self.conn.execute("UPDATE suggestions SET active=0")
         self.conn.execute("INSERT INTO suggestions (week_start, text, check_rule) VALUES (?,?,?)",
-                          (week_start, text, check))
+                          (week_start, text, json.dumps({"check": check, "rule": rule or {"type": "none"}})))
         self.conn.commit()
