@@ -34,11 +34,7 @@ from reflect.db import Memory  # noqa: E402
 from reflect.llm import get_backend  # noqa: E402
 
 RELATIONSHIP = ("sleep_mood", "activity:", "people")
-# wording checks (simple regexes, reported separately from pass/fail)
-CAUSAL = re.compile(r"\b(caus(e|es|ed|ing)|because of|led to|leads to|due to|boost(s|ed|ing)?|"
-                    r"improv(e|es|ed) your mood|makes? you|made you|result(s|ed)? in)\b", re.I)
-HINT = re.compile(r"\b(affect(s|ed|ing)?|impact(s|ed)?|linked|link between|related to|associated|"
-                  r"contribut\w*|tend(s|ed)? to)\b", re.I)
+from reflect.checks import CAUSAL, HINT  # noqa: E402  (same definitions the agent's checker uses)
 
 
 def review_text(review: dict) -> str:
@@ -92,6 +88,9 @@ def run_journal(path: Path, backend: str, out_dir: Path) -> dict:
             "evidence_level": review.get("evidence_level"),
             "invented": invented, "bad_dates": bad_dates, "ungrounded": ungrounded,
             "summary": review.get("summary", ""),
+            "first_draft_problems": (review.get("checks") or {}).get("first_draft_problems", []),
+            "rewrites": (review.get("checks") or {}).get("rewrites", 0),
+            "removed": (review.get("checks") or {}).get("removed_sentences", []),
             "causal": [m.group(0) for m in CAUSAL.finditer(review_text(review))],
             "hints": [m.group(0) for m in HINT.finditer(review_text(review))]
                      if review.get("evidence_level") == "not_enough" else [],
@@ -104,7 +103,10 @@ def run_journal(path: Path, backend: str, out_dir: Path) -> dict:
            "bad_dates": sum(len(w["bad_dates"]) for w in per_week),
            "ungrounded": sum(len(w["ungrounded"]) for w in per_week),
            "causal": sum(len(w["causal"] or []) for w in per_week),
-           "hints": sum(len(w["hints"]) for w in per_week)}
+           "hints": sum(len(w["hints"]) for w in per_week),
+           "first_draft_problems": sum(len(w["first_draft_problems"]) for w in per_week),
+           "rewrites": sum(w["rewrites"] for w in per_week),
+           "removed": sum(len(w["removed"]) for w in per_week)}
 
     # what the statistics layer found at the end (independent of the LLM)
     res["stats_found"] = final["stats_keys"]
@@ -152,16 +154,20 @@ def report(results: list[dict], backend: str, model: str) -> str:
                "the computed patterns. This tests the **statistics layer and the plumbing** only. "
                "Run with the real model to test what the LLM writes.", ""]
     md += ["| journal | entries | stats found | review evidence | found real pattern | false claims | invented | "
-           "bad dates | ungrounded | cite P / R | causal words | hints w/o evidence | pass |",
-           "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+           "bad dates | ungrounded | cite P / R | causal words | hints w/o evidence | 1st-draft problems | "
+           "rewrites | sentences removed | pass |",
+           "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         cp = f"{r.get('cite_precision')} / {r.get('cite_recall')}" if "cite_recall" in r else "–"
         md.append(f"| {r['journal']} | {r['entries']} | {', '.join(r['stats_found']) or '—'} | {r['final_evidence']} | "
                   f"{'✓' if r['found_ok'] else '✗'} | {len(r['false_claims'])} | {r['invented']} | {r['bad_dates']} | "
-                  f"{r['ungrounded']} | {cp} | {r['causal']} | {r['hints']} | {'✅' if r['pass'] else '❌'} |")
+                  f"{r['ungrounded']} | {cp} | {r['causal']} | {r['hints']} | {r['first_draft_problems']} | {r['rewrites']} | {r['removed']} | "
+                  f"{'✅' if r['pass'] else '❌'} |")
     md += ["", "*causal words* = phrases like “because of”, “boosts”, “led to” in any review; "
            "*hints w/o evidence* = “affected”, “linked”, “tended to”… in a review that said evidence is not enough. "
-           "Both are reported, not part of pass/fail.", "", "## Pass rate by kind", "", "| kind | passed |", "|---|---|"]
+           "Both are reported, not part of pass/fail. *1st-draft problems* = rule breaks the checker found in the "
+           "model's first draft (all weeks); *rewrites* = times the review was sent back; *sentences removed* = "
+           "deleted by the last-resort scrub.", "", "## Pass rate by kind", "", "| kind | passed |", "|---|---|"]
     for kind in ("clear_pattern", "missing_days", "no_pattern"):
         rs = [r for r in results if r["kind"] == kind]
         if rs:

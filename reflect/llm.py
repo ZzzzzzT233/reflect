@@ -80,7 +80,7 @@ class MockBackend:
                         "highlights": [], "suggestion_followup": {"mentioned": False, "followed": None, "evidence": ""}}
             return json.loads(json.dumps(g))
         if task == "review":
-            data = json.loads(user.split("DATA:\n", 1)[1])
+            data = json.loads(user.split("DATA:\n", 1)[1].split("\n\nYOUR PREVIOUS DRAFT", 1)[0])
             pats = data["computed_patterns"]
             enough = bool(pats) and data["data_quality"]["enough_for_patterns"]
             tw = data["this_week"]

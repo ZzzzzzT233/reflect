@@ -62,6 +62,18 @@ Evidence rules in `reflect/agent.py`: at least 10 entries in total, at least 3 d
 
 Statistics layer over 50 random seeds each (gold labels): the clear pattern was found 50/50 times; no-pattern journals gave a spurious relationship in 4/50 (8%); missing-day journals gave none.
 
+### Automatic review checks (`reflect/checks.py`)
+
+Every review the model writes is checked before it's saved:
+
+- The evidence level matches the statistics.
+- Every pattern exists in `computed_patterns`, and every cited date is part of that pattern's evidence.
+- No causal wording ("because of", "boosts", "led to"…).
+- No relationship hints ("affected", "linked"…) when evidence is not enough.
+- No "not enough evidence" line in a review whose evidence level is "enough".
+
+If anything fails, the draft goes back to the model with the list of problems, up to 2 rewrites. If problems remain after that, `scrub()` fixes them deterministically: it drops unsupported patterns and dates, fixes the evidence level, and deletes the offending sentences. Each review stores what happened in `review["checks"]`, and `review_eval.py` reports first-draft problems, rewrites and removed sentences.
+
 ### Goal follow-up
 
 Each weekly suggestion comes with a machine-checkable rule: `bedtime_before`, `sleep_at_least`, `activity` or `log_field`. Next week's review reports two things: whether the rule was met according to the data ("met on 4 of 5 weeknights"), and what the user said in their entries. To make follow-up detection scoreable, the demo keeps one scripted goal ("no deadline work after 12:30am on weeknights") from week 2 on, because the demo journal's hand labels assume that goal. Use `--free-goal` to let the model choose each week's goal instead.

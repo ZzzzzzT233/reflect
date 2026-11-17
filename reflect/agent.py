@@ -11,6 +11,7 @@ import random
 from datetime import date, timedelta
 from statistics import mean
 
+from .checks import MAX_REWRITES, find_problems, scrub
 from .db import Memory
 
 ACTIVITIES = ["exercise", "studying", "deadline_work", "class", "social", "family_call",
@@ -175,6 +176,7 @@ class Reflect:
                      for d, x in week.items()},
         }
         review = self.llm.json(REVIEW_SYSTEM, "DATA:\n" + json.dumps(stats), task="review")
+        review = self._check_and_rewrite(review, stats)
         self.mem.save_review(ws, stats, review)
         s = review.get("suggestion") or {}
         if self.scripted_goal:              # evaluation mode: keep a fixed goal so follow-up can be scored
@@ -183,6 +185,26 @@ class Reflect:
         elif s.get("text"):
             self.mem.set_suggestion(ws, s["text"], s.get("check", ""), validate_rule(s.get("rule")))
         return stats, review
+
+    def _check_and_rewrite(self, review: dict, stats: dict) -> dict:
+        """Check the draft against the rules in checks.py. If it breaks any, send it back with the list of
+        problems (up to MAX_REWRITES times). Anything still wrong is fixed by checks.scrub()."""
+        problems = first = find_problems(review, stats)
+        rewrites = 0
+        while problems and rewrites < MAX_REWRITES:
+            rewrites += 1
+            user = ("DATA:\n" + json.dumps(stats) + "\n\nYOUR PREVIOUS DRAFT:\n" + json.dumps(review) +
+                    "\n\nThe draft broke these rules:\n- " + "\n- ".join(problems) +
+                    "\nRewrite the whole JSON so every problem is fixed. Keep everything that was fine.")
+            review = self.llm.json(REVIEW_SYSTEM, user, task="review")
+            problems = find_problems(review, stats)
+        removed = []
+        if problems:
+            review, removed = scrub(review, stats)
+            problems = find_problems(review, stats)
+        review["checks"] = {"first_draft_problems": first, "rewrites": rewrites,
+                            "removed_sentences": removed, "final_problems": problems}
+        return review
 
     @staticmethod
     def _week_stats(week: dict) -> dict:

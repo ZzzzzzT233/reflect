@@ -61,6 +61,14 @@ def score_extraction(pred: dict[str, dict], gold: dict[str, dict]) -> dict:
 
 
 # ---------------------------------------------------------------- report
+def _checks_line(review: dict) -> str:
+    c = review.get("checks") or {}
+    if not c:
+        return ""
+    return (f"*checks: {len(c['first_draft_problems'])} problem(s) in first draft · {c['rewrites']} rewrite(s) · "
+            f"{len(c['removed_sentences'])} sentence(s) removed · {len(c['final_problems'])} left*")
+
+
 def review_md(ws: str, stats: dict, review: dict) -> str:
     t = stats["this_week"]
     head = (f"*{t['entries']} entries · avg mood {t['avg_mood']:+} · avg sleep {t['avg_sleep']}h · "
@@ -68,7 +76,8 @@ def review_md(ws: str, stats: dict, review: dict) -> str:
             if t.get("entries") else "*no entries this week*")
     q = stats.get("data_quality", {})
     lines = [f"### Weekly review — week of {ws}", head,
-             f"*evidence: {review.get('evidence_level', '?')} · {q.get('total_entries', '?')} entries so far*", "",
+             f"*evidence: {review.get('evidence_level', '?')} · {q.get('total_entries', '?')} entries so far*",
+             _checks_line(review), "",
              review.get("summary", ""), ""]
     if stats.get("last_suggestion_followup"):
         fu = stats["last_suggestion_followup"]
