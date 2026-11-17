@@ -52,7 +52,13 @@ Rules:
   "patterns": [] and set "evidence_level": "not_enough". Say plainly in the summary that there isn't
   enough evidence yet for a pattern (and why: too few entries, missing days, or no clear relationship).
   Otherwise set "evidence_level": "enough".
-- Patterns are exploratory: say "linked to" / "tended to", never "causes".
+- Mood is on a -2..+2 scale: -2 very bad, -1 low, 0 neutral, +1 good, +2 very good. So an average of
+  +1 is a GOOD week, 0 is neutral, below 0 is low. Describe averages accordingly.
+- Patterns are exploratory: say "linked to" / "tended to". Never say or imply cause: avoid "causes",
+  "because of", "led to", "due to", "boosts", "improves your mood", "makes you".
+- When evidence_level is "not_enough", do not hint at ANY relationship either (no "late nights may have
+  affected your mood", no "linked", "related", "tended to"). Just describe what happened and say more
+  entries are needed.
 - Start by checking last week's suggestion using DATA.last_suggestion_followup (be honest, kind, specific).
 - End with exactly ONE small, specific suggestion for next week that the user can verify from their journal.
   If evidence is not enough, the suggestion can simply be to keep journaling (e.g. include bedtime every day).

@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -33,6 +34,19 @@ from reflect.db import Memory  # noqa: E402
 from reflect.llm import get_backend  # noqa: E402
 
 RELATIONSHIP = ("sleep_mood", "activity:", "people")
+# wording checks (simple regexes, reported separately from pass/fail)
+CAUSAL = re.compile(r"\b(caus(e|es|ed|ing)|because of|led to|leads to|due to|boost(s|ed|ing)?|"
+                    r"improv(e|es|ed) your mood|makes? you|made you|result(s|ed)? in)\b", re.I)
+HINT = re.compile(r"\b(affect(s|ed|ing)?|impact(s|ed)?|linked|link between|related to|associated|"
+                  r"contribut\w*|tend(s|ed)? to)\b", re.I)
+
+
+def review_text(review: dict) -> str:
+    parts = [review.get("summary", ""), review.get("last_suggestion_check", "")]
+    parts += [p.get("finding", "") for p in review.get("patterns", [])]
+    s = review.get("suggestion") or {}
+    parts += [s.get("text", ""), s.get("check", "")]
+    return " ".join(x for x in parts if isinstance(x, str))
 
 
 def is_relationship(key: str) -> bool:
@@ -78,6 +92,9 @@ def run_journal(path: Path, backend: str, out_dir: Path) -> dict:
             "evidence_level": review.get("evidence_level"),
             "invented": invented, "bad_dates": bad_dates, "ungrounded": ungrounded,
             "summary": review.get("summary", ""),
+            "causal": [m.group(0) for m in CAUSAL.finditer(review_text(review))],
+            "hints": [m.group(0) for m in HINT.finditer(review_text(review))]
+                     if review.get("evidence_level") == "not_enough" else [],
         })
 
     final = per_week[-1]
@@ -85,7 +102,9 @@ def run_journal(path: Path, backend: str, out_dir: Path) -> dict:
     res = {"journal": path.stem, "kind": j["kind"], "entries": len(entries), "weeks": per_week,
            "invented": sum(len(w["invented"]) for w in per_week),
            "bad_dates": sum(len(w["bad_dates"]) for w in per_week),
-           "ungrounded": sum(len(w["ungrounded"]) for w in per_week)}
+           "ungrounded": sum(len(w["ungrounded"]) for w in per_week),
+           "causal": sum(len(w["causal"] or []) for w in per_week),
+           "hints": sum(len(w["hints"]) for w in per_week)}
 
     # what the statistics layer found at the end (independent of the LLM)
     res["stats_found"] = final["stats_keys"]
@@ -133,13 +152,16 @@ def report(results: list[dict], backend: str, model: str) -> str:
                "the computed patterns. This tests the **statistics layer and the plumbing** only. "
                "Run with the real model to test what the LLM writes.", ""]
     md += ["| journal | entries | stats found | review evidence | found real pattern | false claims | invented | "
-           "bad dates | ungrounded | cite P / R | pass |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+           "bad dates | ungrounded | cite P / R | causal words | hints w/o evidence | pass |",
+           "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         cp = f"{r.get('cite_precision')} / {r.get('cite_recall')}" if "cite_recall" in r else "–"
         md.append(f"| {r['journal']} | {r['entries']} | {', '.join(r['stats_found']) or '—'} | {r['final_evidence']} | "
                   f"{'✓' if r['found_ok'] else '✗'} | {len(r['false_claims'])} | {r['invented']} | {r['bad_dates']} | "
-                  f"{r['ungrounded']} | {cp} | {'✅' if r['pass'] else '❌'} |")
-    md += ["", "## Pass rate by kind", "", "| kind | passed |", "|---|---|"]
+                  f"{r['ungrounded']} | {cp} | {r['causal']} | {r['hints']} | {'✅' if r['pass'] else '❌'} |")
+    md += ["", "*causal words* = phrases like “because of”, “boosts”, “led to” in any review; "
+           "*hints w/o evidence* = “affected”, “linked”, “tended to”… in a review that said evidence is not enough. "
+           "Both are reported, not part of pass/fail.", "", "## Pass rate by kind", "", "| kind | passed |", "|---|---|"]
     for kind in ("clear_pattern", "missing_days", "no_pattern"):
         rs = [r for r in results if r["kind"] == kind]
         if rs:
