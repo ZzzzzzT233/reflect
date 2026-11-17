@@ -46,6 +46,8 @@ REVIEW_SYSTEM = """You are Reflect, a warm but concrete journal coach writing a 
 Rules:
 - Patterns: ONLY those listed in DATA.computed_patterns (they passed a statistical check). Never invent one,
   and never turn a single day into a pattern. For each, copy its "key" and cite dates ONLY from its "dates".
+- DATA.observations are simple counts (e.g. a stressor that came up 4 times). You may mention them in the
+  summary, but they are NOT patterns: never put them in "patterns" and they never make evidence "enough".
 - If DATA.computed_patterns is empty, or DATA.data_quality.enough_for_patterns is false, return
   "patterns": [] and set "evidence_level": "not_enough". Say plainly in the summary that there isn't
   enough evidence yet for a pattern (and why: too few entries, missing days, or no clear relationship).
@@ -151,6 +153,7 @@ class Reflect:
             "data_quality": quality,
             "previous_weeks": [{"week_start": w, **s["this_week"]} for w, s, _ in self.mem.reviews() if w < ws],
             "computed_patterns": patterns,
+            "observations": recurring_stressors(history),
             "last_suggestion_followup": followup_summary(sugg, week),
             "days": {d: {k: x[k] for k in ("mood_score", "emotions", "sleep_hours", "bedtime",
                                            "activities", "people", "stressors", "risk_flag")}
@@ -306,17 +309,18 @@ def find_patterns(h: dict[str, dict], min_n: int = MIN_GROUP) -> list[dict]:
     for c in out:
         c["tests_run"] = n_tests
 
-    # (d) recurring stressors (descriptive count, not a correlation)
+    return sorted(out, key=lambda p: -p["strength"])
+
+
+def recurring_stressors(h: dict[str, dict], min_n: int = MIN_GROUP) -> list[dict]:
+    """Descriptive counts ("'midterm' came up 4 times"). These are observations, not patterns:
+    they say nothing about a relationship, so they never make the evidence level 'enough'."""
     st: dict[str, list[str]] = {}
-    for d in dates:
+    for d in sorted(h):
         for s in h[d]["stressors"]:
             st.setdefault(s.lower(), []).append(d)
-    for s, ds in st.items():
-        if len(ds) >= min_n:
-            out.append({"key": f"stressor:{s}", "finding": f"'{s}' came up {len(ds)} times",
-                        "dates": ds, "p_value": None, "strength": 0.3})
-
-    return sorted(out, key=lambda p: -p["strength"])
+    return [{"key": f"stressor:{s}", "finding": f"'{s}' came up {len(ds)} times", "dates": ds}
+            for s, ds in sorted(st.items(), key=lambda kv: -len(kv[1])) if len(ds) >= min_n]
 
 
 def followup_summary(sugg: dict | None, week: dict) -> dict | None:

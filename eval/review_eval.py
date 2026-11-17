@@ -74,6 +74,7 @@ def run_journal(path: Path, backend: str, out_dir: Path) -> dict:
         per_week.append({
             "week": ws, "entries_so_far": stats["data_quality"]["total_entries"],
             "stats_keys": sorted(computed), "review_keys": rkeys,
+            "observations": [o["key"] for o in stats.get("observations", [])],
             "evidence_level": review.get("evidence_level"),
             "invented": invented, "bad_dates": bad_dates, "ungrounded": ungrounded,
             "summary": review.get("summary", ""),

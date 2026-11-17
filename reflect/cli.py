@@ -73,6 +73,10 @@ def review_md(ws: str, stats: dict, review: dict) -> str:
     if stats.get("last_suggestion_followup"):
         lines += [f"**Last week’s suggestion:** {stats['last_suggestion_followup']['suggestion']}  ",
                   f"**Check-in:** {review.get('last_suggestion_check', '')}", ""]
+    obs = stats.get("observations") or []
+    if obs:
+        lines.append("**Observations** (counts, not patterns): " + "; ".join(o["finding"] for o in obs))
+        lines.append("")
     lines.append("**Patterns**")
     for p in review.get("patterns", []):
         lines.append(f"- {p.get('finding')} _({', '.join(p.get('evidence_dates', []))})_")
