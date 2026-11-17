@@ -1,0 +1,748 @@
+[
+ {
+  "journal": "clear_pattern_s1",
+  "kind": "clear_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood score of 0.86, indicating a generally good week, despite one low mood day on November 6th. You had a mix of activities, including classes, studying, and some outdoor time, which contributed positively to your mood overall.",
+    "causal": [],
+    "hints": [
+     "contributed"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had a neutral average mood of +0.14, with two low-mood days on November 10 and 11. You experienced late nights on two occasions, which may have contributed to your mood fluctuations, as indicated by the pattern linking sleep and mood.",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had a neutral average mood of 0, with three low mood days. You also experienced late nights on three occasions, which may have affected your sleep quality, averaging 6.8 hours per night.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 1,
+  "stats_found": [
+   "sleep_mood"
+  ],
+  "stats_false": [],
+  "final_evidence": "enough",
+  "admits_ok": true,
+  "found": [
+   "sleep_mood"
+  ],
+  "found_ok": true,
+  "false_claims": [],
+  "cite_precision": 1.0,
+  "cite_recall": 1.0,
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.86,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.87,
+   "people_f1": 0.9,
+   "followup_correct": 0.48
+  },
+  "llm_calls": 25,
+  "tokens": 20219
+ },
+ {
+  "journal": "clear_pattern_s2",
+  "kind": "clear_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood of +0.57, indicating a generally good week with a few ups and downs. You experienced one low mood day on November 3rd, which coincided with a late night and less sleep. Overall, you engaged in a variety of activities, including exercise and classes, which seemed to contribute positively to your mood on other days.",
+    "causal": [],
+    "hints": [
+     "contribute",
+     "affects"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had a neutral average mood of 0, with three days of low mood. You logged your bedtime every day, which is great!",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood of +0.57, indicating a generally good week, although there were two low mood days. You successfully logged your bedtime every day, which is great for tracking your sleep patterns.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 2,
+  "stats_found": [
+   "sleep_mood"
+  ],
+  "stats_false": [],
+  "final_evidence": "enough",
+  "admits_ok": true,
+  "found": [
+   "sleep_mood"
+  ],
+  "found_ok": true,
+  "false_claims": [],
+  "cite_precision": 1.0,
+  "cite_recall": 1.0,
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.86,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.85,
+   "people_f1": 0.9,
+   "followup_correct": 0.33
+  },
+  "llm_calls": 24,
+  "tokens": 19937
+ },
+ {
+  "journal": "clear_pattern_s3",
+  "kind": "clear_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had a neutral average mood of 0, with two low mood days on November 3rd and 6th. You had a good amount of sleep, averaging 7.4 hours, but experienced two late nights. Overall, there isn't enough evidence yet for a pattern due to the limited number of entries.",
+    "causal": [
+     "due to"
+    ],
+    "hints": []
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood of 0.86, indicating a generally good week, despite experiencing low moods on two days. You had late nights on two occasions, which may have affected your sleep, averaging 6.9 hours overall. It's great to see you engaging in various activities like classes, exercise, and chores throughout the week.",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [
+     "sleep_mood"
+    ],
+    "review_keys": [
+     "sleep_mood"
+    ],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had a neutral average mood of 0, with two low-mood days on the 19th and 20th. You experienced late nights on those days, which aligns with a pattern where low mood days tend to follow late nights, particularly when you had less than 6 hours of sleep. Overall, there isn't enough evidence yet to draw strong conclusions, but it's clear that sleep patterns are something to keep an eye on.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 1,
+  "hints": 0,
+  "stats_found": [
+   "sleep_mood"
+  ],
+  "stats_false": [],
+  "final_evidence": "enough",
+  "admits_ok": true,
+  "found": [
+   "sleep_mood"
+  ],
+  "found_ok": true,
+  "false_claims": [],
+  "cite_precision": 1.0,
+  "cite_recall": 1.0,
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.86,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.92,
+   "people_f1": 1.0,
+   "followup_correct": 0.52
+  },
+  "llm_calls": 26,
+  "tokens": 20407
+ },
+ {
+  "journal": "missing_days_s1",
+  "kind": "missing_days",
+  "entries": 8,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 2,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood of +1, indicating a good week overall. You recorded two entries, with a mix of activities including exercise, class, and social time, contributing to a positive experience. However, there isn't enough evidence yet to identify any patterns, as there were too few entries and missing days.",
+    "causal": [],
+    "hints": [
+     "contributing"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 6,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood of 0, indicating a neutral week overall. You experienced one low mood day on November 10th, while your sleep averaged 7.1 hours. However, there isn't enough evidence yet for a pattern due to missing days and not having enough entries.",
+    "causal": [
+     "due to"
+    ],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 8,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had a low average mood of -1, with one day of particularly low mood on November 16th. You managed to get an average of 6.8 hours of sleep, but there were only two entries this week, which isn't enough to identify any patterns.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 1,
+  "hints": 1,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 1.0,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.89,
+   "people_f1": 1.0,
+   "followup_correct": 0.5
+  },
+  "llm_calls": 13,
+  "tokens": 10295
+ },
+ {
+  "journal": "missing_days_s2",
+  "kind": "missing_days",
+  "entries": 8,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 3,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had a good average mood of +1.67, indicating a generally positive experience. You had three entries, but unfortunately, there isn't enough evidence yet to identify any patterns due to missing days and a low number of entries.",
+    "causal": [
+     "due to"
+    ],
+    "hints": []
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 5,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had a low average mood of -1, with one particularly low mood day on November 10th. You managed to engage in a variety of activities, including exercise and studying, but there were only two entries this week, which isn't enough to identify any patterns.",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 8,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [
+     "stressor:problem set"
+    ],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had a neutral average mood of +0.33, with one low mood day on November 20th. You had a late night on that same day, which may have contributed to your lower mood and shorter sleep of just 4 hours. Overall, there isn't enough evidence yet for a pattern due to missing days and insufficient entries.",
+    "causal": [
+     "due to"
+    ],
+    "hints": [
+     "contributed"
+    ]
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 2,
+  "hints": 1,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 1.0,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.91,
+   "people_f1": 1.0,
+   "followup_correct": 0.88
+  },
+  "llm_calls": 14,
+  "tokens": 10609
+ },
+ {
+  "journal": "missing_days_s3",
+  "kind": "missing_days",
+  "entries": 8,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 1,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had one entry with a neutral mood and an average of 7.5 hours of sleep. You engaged in exercise, attended a class, and had a family call, which is great to see!",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 5,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood of +0.25, indicating a generally neutral experience with one low mood day on November 13th. You managed to get an average of 7 hours of sleep, though there was one late night on the same day as your low mood.",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 8,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood of +0.33, which is neutral overall. You recorded three entries, but unfortunately, there isn't enough evidence yet to identify any patterns, as you need more entries and days covered. Keep journaling to capture more details and entries in the coming weeks.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 0,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 1.0,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.91,
+   "people_f1": 0.88,
+   "followup_correct": 0.5
+  },
+  "llm_calls": 13,
+  "tokens": 10099
+ },
+ {
+  "journal": "no_pattern_s1",
+  "kind": "no_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had a neutral average mood of 0.57, with one low mood day on November 3rd. You engaged in a variety of activities, including classes, family calls, and some exercise, which contributed to a balanced week overall.",
+    "causal": [],
+    "hints": [
+     "contributed"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood score of -0.29, indicating a low week overall, with four days of low mood. You experienced late nights on two occasions, which may have contributed to your lower mood and sleep average of 6.4 hours.",
+    "causal": [],
+    "hints": [
+     "contributed"
+    ]
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood score of 0.71, indicating a generally good week overall. You experienced low moods on two days, specifically on November 17 and 19, and had a couple of late nights that may have affected your sleep. However, your mood improved significantly on several days, particularly on November 18, 20, and 22, which were marked by positive emotions like joy and gratitude.",
+    "causal": [],
+    "hints": [
+     "affected"
+    ]
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 3,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.9,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.86,
+   "people_f1": 0.95,
+   "followup_correct": 0.48
+  },
+  "llm_calls": 25,
+  "tokens": 19491
+ },
+ {
+  "journal": "no_pattern_s2",
+  "kind": "no_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, your average mood was -0.43, indicating a low week overall, with three days of low mood. You had late nights on three occasions, which may have contributed to your mood fluctuations, but there isn't enough evidence yet to identify any clear patterns.",
+    "causal": [],
+    "hints": [
+     "contributed"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood score of 0.29, indicating a generally neutral week with some ups and downs. You experienced low moods on three days, and your sleep averaged 7.2 hours, which is a bit better than last week. However, there isn't enough evidence yet to identify any clear patterns in your mood or activities, as the data is still developing.",
+    "causal": [],
+    "hints": []
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood score of +1, indicating a good week overall. You engaged in various activities, including classes and family calls, while managing to get an average of 7.1 hours of sleep. However, there isn't enough evidence yet for a pattern, as there are too few entries to establish any clear relationships.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 1,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.86,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.86,
+   "people_f1": 1.0,
+   "followup_correct": 0.52
+  },
+  "llm_calls": 25,
+  "tokens": 19353
+ },
+ {
+  "journal": "no_pattern_s3",
+  "kind": "no_pattern",
+  "entries": 21,
+  "weeks": [
+   {
+    "week": "2026-11-02",
+    "entries_so_far": 7,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week had an average mood score of -0.43, indicating a low week overall, with four days of low mood. You also experienced late nights on three occasions, which may have contributed to your mood fluctuations, but there isn't enough evidence yet to identify any clear patterns in your entries.",
+    "causal": [],
+    "hints": [
+     "contributed"
+    ]
+   },
+   {
+    "week": "2026-11-09",
+    "entries_so_far": 14,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, your average mood was neutral at 0, with three days of low mood. You had a mix of activities, including studying, chores, and some social time, but there were also late nights that might have affected your sleep, averaging 7.3 hours.",
+    "causal": [],
+    "hints": [
+     "affected"
+    ]
+   },
+   {
+    "week": "2026-11-16",
+    "entries_so_far": 21,
+    "stats_keys": [],
+    "review_keys": [],
+    "observations": [],
+    "evidence_level": "not_enough",
+    "invented": [],
+    "bad_dates": [],
+    "ungrounded": [],
+    "summary": "This week, you had an average mood score of 0.14, indicating a neutral week overall. You experienced one low mood day on November 17th, and had a mix of activities including exercise, studying, and social time. However, there isn't enough evidence yet to identify any clear patterns in your mood or activities, as the data is still developing.",
+    "causal": [],
+    "hints": []
+   }
+  ],
+  "invented": 0,
+  "bad_dates": 0,
+  "ungrounded": 0,
+  "causal": 0,
+  "hints": 2,
+  "stats_found": [],
+  "stats_false": [],
+  "final_evidence": "not_enough",
+  "admits_ok": true,
+  "found": [],
+  "found_ok": true,
+  "false_claims": [],
+  "pass": true,
+  "extraction": {
+   "mood_exact": 0.95,
+   "mood_within_1": 1.0,
+   "sleep_within_0.5h": 1.0,
+   "bedtime_exact": 1.0,
+   "activities_f1": 0.92,
+   "people_f1": 0.95,
+   "followup_correct": 0.33
+  },
+  "llm_calls": 24,
+  "tokens": 19129
+ }
+]
