@@ -1,0 +1,6 @@
+.env
+*.sqlite
+out/
+eval/goemotions/
+__pycache__/
+.DS_Store
