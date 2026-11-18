@@ -4,6 +4,8 @@ Every day you write a few lines in your journal. Reflect reads each entry, keeps
 
 Term project prototype for MIT 1.125 Agentic Engineering.
 
+**Midpoint check-in video (about 5 min):** https://youtu.be/uK2Nv5csEH0
+
 ## How it works
 
 ```
